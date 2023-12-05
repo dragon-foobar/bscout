@@ -1,7 +1,7 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useState } from 'react';
 import { LoadingDots } from '@/components/icons';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { MenuIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 
