@@ -1,7 +1,7 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { useState } from 'react';
 import { LoadingDots } from '@/components/icons';
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { MenuIcon } from '@heroicons/react/outline';
 import Link from 'next/link';
 
@@ -40,7 +40,10 @@ export default function Navbar({
                 height={300}
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2PYsGHDfwAHNAMQumvbogAAAABJRU5ErkJggg=="
-              />
+                style={{
+                  maxWidth: "100%",
+                  height: "auto"
+                }} />
             </div>
           </Link>
         ) : (
