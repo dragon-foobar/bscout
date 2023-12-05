@@ -5,7 +5,7 @@ export default function EditIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       width="24"
       height="24"
-      stroke="currentColor"
+      stroke="#F2A900"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"

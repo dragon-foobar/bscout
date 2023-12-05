@@ -127,7 +127,7 @@ export async function searchUser(query: string): Promise<UserProps[]> {
     .aggregate<UserProps>([
       {
         $search: {
-          index: 'name-index',
+          // index: 'name-index',
           /* 
           name-index is a search index as follows:
 
@@ -176,25 +176,25 @@ export async function searchUser(query: string): Promise<UserProps[]> {
           }
         }
       },
-      {
-        // filter out users that are not verified
-        $match: {
-          verified: true
-        }
-      },
+      // {
+      //   // filter out users that are not verified
+      //   $match: {
+      //     emailVerified: true
+      //   }
+      // },
       // limit to 10 results
       {
         $limit: 10
-      },
-      {
-        $project: {
-          _id: 0,
-          emailVerified: 0,
-          score: {
-            $meta: 'searchScore'
-          }
-        }
       }
+      // {
+      //   $project: {
+      //     _id: 0,
+      //     emailVerified: 0,
+      //     score: {
+      //       $meta: 'searchScore'
+      //     }
+      //   }
+      // }
     ])
     .toArray();
 }

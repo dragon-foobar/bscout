@@ -7,7 +7,7 @@ export default function DirectoryIcon({ className }: { className?: string }) {
         fill="none"
         height="24"
         shapeRendering="geometricPrecision"
-        stroke="currentColor"
+        stroke="#F2A900"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.5"
