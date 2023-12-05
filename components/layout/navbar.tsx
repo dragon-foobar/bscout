@@ -28,8 +28,8 @@ export default function Navbar({
       </button>
       {status !== 'loading' &&
         (session?.user ? (
-          <Link href={`/${session.username}`}>
-            <a className="w-8 h-8 rounded-full overflow-hidden">
+          <Link href={`/${session.username}`} >
+            <div className="w-8 h-8 rounded-full overflow-hidden">
               <Image
                 src={
                   session.user.image ||
@@ -41,14 +41,14 @@ export default function Navbar({
                 placeholder="blur"
                 blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2PYsGHDfwAHNAMQumvbogAAAABJRU5ErkJggg=="
               />
-            </a>
+            </div>
           </Link>
         ) : (
           <button
             disabled={loading}
             onClick={() => {
               setLoading(true);
-              signIn('github', { callbackUrl: `/profile` });
+              signIn('', { callbackUrl: `/profile` });
             }}
             className={`${
               loading

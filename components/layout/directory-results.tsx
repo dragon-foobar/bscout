@@ -4,19 +4,19 @@ import { UserProps } from '@/lib/api/user';
 import { CheckInCircleIcon } from '@/components/icons';
 
 export default function DirectoryResults({ users }: { users: UserProps[] }) {
+
   return (
     <ul role="list" className="relative z-0 directory-divide-y">
       {users.map((user) => (
         <li key={user.username}>
           <Link href={`/${user.username}`}>
-            <a>
               <div className="relative px-6 py-4 flex items-center space-x-3 focus-within:ring-0">
-                <div className="flex-shrink-0 h-12 w-12 rounded-full overflow-hidden">
+                <div className="flex-shrink-0 h-12 w-12 rounded-full overflow-hidden relative">
                   <BlurImage
                     src={user.image}
                     alt={user.name}
-                    width={300}
-                    height={300}
+                    // width={300}
+                    // height={300}
                   />
                 </div>
                 <div className="flex-1 min-w-0">
@@ -35,7 +35,6 @@ export default function DirectoryResults({ users }: { users: UserProps[] }) {
                   </p>
                 </div>
               </div>
-            </a>
           </Link>
         </li>
       ))}

@@ -57,7 +57,7 @@ export default function Profile({
       const response = await fetch('/api/user', {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
       });
@@ -117,8 +117,8 @@ export default function Profile({
             <BlurImage
               src={user.image}
               alt={user.name}
-              width={300}
-              height={300}
+              // width={300}
+              // height={300}
             />
           </div>
           <div className="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
@@ -230,10 +230,8 @@ export default function Profile({
               <CheckIcon className="h-4 w-4 text-white" />
             )}
           </button>
-          <Link href={`/${user.username}`} shallow replace scroll={false}>
-            <a className="rounded-full border border-gray-800 hover:border-white w-12 h-12 flex justify-center items-center transition-all">
+          <Link href={`/${user.username}`} shallow replace scroll={false} className="rounded-full border border-gray-800 hover:border-white w-12 h-12 flex justify-center items-center transition-all">
               <XIcon className="h-4 w-4 text-white" />
-            </a>
           </Link>
         </div>
       ) : session?.username === user.username ? (
@@ -243,10 +241,11 @@ export default function Profile({
           shallow
           replace
           scroll={false}
+          
         >
-          <a className="fixed bottom-10 right-10 rounded-full border bg-black border-gray-800 hover:border-white w-12 h-12 flex justify-center items-center transition-all">
+          <div className="fixed bottom-10 right-10 rounded-full border bg-black border-gray-800 hover:border-white w-12 h-12 flex justify-center items-center transition-all">
             <EditIcon className="h-4 w-4 text-white" />
-          </a>
+          </div>
         </Link>
       ) : null}
     </div>

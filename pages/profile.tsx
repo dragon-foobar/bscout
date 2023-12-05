@@ -7,6 +7,7 @@ export default function Profile() {
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
+  console.log('session in Profile page',session)
   if (!session) {
     return {
       redirect: {

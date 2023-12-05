@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   swcMinify: true,
   reactStrictMode: true,
@@ -10,10 +11,10 @@ const nextConfig = {
       'loremflickr.com'
     ]
   },
-  experimental: {
-    legacyBrowsers: false,
-    browsersListForSwc: true
-  }
+  // webpack: (config) => {
+  //   config.externals = [...config.externals, 'argon2'];
+  //   return config;
+  // },
 };
 
 module.exports = nextConfig;

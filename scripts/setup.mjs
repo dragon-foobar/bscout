@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import * as argon2 from "argon2";
 import { faker } from '@faker-js/faker';
 import dotenv from 'dotenv';
 
@@ -6,38 +7,41 @@ dotenv.config();
 
 const setup = async () => {
   let client;
-
+  console.log('about to try connecting')
   try {
     client = new MongoClient(process.env.MONGODB_URI);
     await client.connect();
-
+    console.log('connected')
     const hasData = await client
       .db('test')
       .collection('users')
       .countDocuments();
-
+    console.log('has data',hasData)
     if (hasData) {
       console.log('Database already exists with data');
-      client.close();
-      return;
+      await client.db('test').collection('users').drop()
     }
-
-    const records = [...Array(10)].map(() => {
-      const [fName, lName] = faker.name.findName().split(' ');
+    console.log('about to make records')
+    const records = await Promise.all([...Array(10)].map(async(_num,index) => {
+      const [fName, lName] = faker.name.fullName().split(' ');
       const username = faker.internet.userName(fName, lName);
-      const email = faker.internet.email(fName, lName);
-      const image = faker.image.people(640, 480, true);
+      const email = `${index}admin@gmail.com`;
+      const image = faker.image.avatar();
+      const bio = 'This is just a test bio. Sue me'
+      const password = await argon2.hash("password");
 
       return {
         name: `${fName} ${lName}`,
         username,
         email,
+        password,
         image,
         followers: 0,
-        emailVerified: null
+        emailVerified: null,
+        bio,
       };
-    });
-
+    }));
+    console.log('about to insert data')
     const insert = await client
       .db('test')
       .collection('users')
@@ -53,7 +57,7 @@ const setup = async () => {
       await client.close();
     }
   }
-};
+} 
 
 try {
   setup();

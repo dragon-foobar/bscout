@@ -11,6 +11,7 @@ export default function BlurImage(props: ImageProps) {
       {...props}
       src={src}
       alt={props.alt}
+      layout="fill"
       className={`${props.className} transition-all ${
         isLoading
           ? 'grayscale blur-2xl scale-110'

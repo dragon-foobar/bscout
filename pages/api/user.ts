@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { searchUser, updateUser } from 'lib/api/user';
 import { getSession } from 'next-auth/react';
 import { getMdxSource } from 'lib/api/user';
+import { getServerSession } from 'next-auth';
 
 export default async function handler(
   req: NextApiRequest,
@@ -18,8 +19,12 @@ export default async function handler(
       });
     }
   } else if (req.method === 'PUT') {
+    
     const { username, bio } = req.body;
-    const session = await getSession({ req });
+    const session = await getServerSession();
+
+    console.log('session in auth/user',session)
+
     if (!session || session.username !== username) {
       return res.status(401).json({
         error: 'Unauthorized'

@@ -10,6 +10,7 @@ export default function Settings({ user }: { user: UserProps }) {
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
+  console.log('session in settings',session)
   if (!session) {
     return {
       redirect: {

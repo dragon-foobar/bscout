@@ -80,6 +80,7 @@ export async function getFirstUser(): Promise<UserProps | null> {
 export async function getAllUsers(): Promise<ResultProps[]> {
   const client = await clientPromise;
   const collection = client.db('test').collection('users');
+
   return await collection
     .aggregate<ResultProps>([
       {
@@ -205,6 +206,7 @@ export async function getUserCount(): Promise<number> {
 }
 
 export async function updateUser(username: string, bio: string) {
+
   const client = await clientPromise;
   const collection = client.db('test').collection('users');
   return await collection.updateOne({ username }, { $set: { bio } });
