@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { searchUser, updateUser } from 'lib/api/user';
-import { getSession } from 'next-auth/react';
+import { authOptions } from 'pages/api/auth/[...nextauth]'
 import { getMdxSource } from 'lib/api/user';
 import { getServerSession } from 'next-auth';
 
@@ -21,7 +21,7 @@ export default async function handler(
   } else if (req.method === 'PUT') {
     
     const { username, bio } = req.body;
-    const session = await getServerSession();
+    const session = await getServerSession(req, res, authOptions)
 
     console.log('session in auth/user',session)
 

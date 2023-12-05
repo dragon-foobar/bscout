@@ -1,12 +1,13 @@
 import { GetServerSideProps } from 'next';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { authOptions } from 'pages/api/auth/[...nextauth]'
 
 export default function Profile() {
   return <div>Profile</div>;
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req }) => {
-  const session = await getSession({ req });
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getServerSession(context.req, context.res, authOptions)
   console.log('session in Profile page',session)
   if (!session) {
     return {

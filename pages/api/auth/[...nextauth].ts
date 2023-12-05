@@ -1,9 +1,10 @@
 import { nextauthOptions } from "@/lib/nextauthOptions";
+import type { NextAuthOptions } from 'next-auth'
 import NextAuth from "next-auth";
 
-export default NextAuth(nextauthOptions);
+export const authOptions: NextAuthOptions = {...nextauthOptions}
 
-
+export default NextAuth(authOptions);
 
 // import NextAuth from 'next-auth';
 // import GitHubProvider from 'next-auth/providers/github';
