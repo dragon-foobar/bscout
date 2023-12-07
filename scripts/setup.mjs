@@ -36,7 +36,7 @@ const setup = async () => {
         email,
         password,
         image,
-        followers: 0,
+        followers: 1,
         emailVerified: null,
         bio,
       };

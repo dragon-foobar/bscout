@@ -153,27 +153,25 @@ export async function searchUser(query: string): Promise<UserProps[]> {
           */
           text: {
             query: query,
-            path: {
-              wildcard: '*' // match on both name and username
-            },
-            fuzzy: {}
-            // score: {
-            //   // search ranking algorithm: multiply relevance score by the log1p of follower count
-            //   function: {
-            //     multiply: [
-            //       {
-            //         score: 'relevance'
-            //       },
-            //       {
-            //         log1p: {
-            //           path: {
-            //             value: 'followers'
-            //           }
-            //         }
-            //       }
-            //     ]
-            //   }
-            // }
+            path: ['name','username'],
+            fuzzy: {},
+            score: {
+              // search ranking algorithm: multiply relevance score by the log1p of follower count
+              function: {
+                multiply: [
+                  {
+                    score: 'relevance'
+                  },
+                  {
+                    log1p: {
+                      path: {
+                        value: 'followers'
+                      }
+                    }
+                  }
+                ]
+              }
+            }
           }
         }
       },
@@ -190,6 +188,7 @@ export async function searchUser(query: string): Promise<UserProps[]> {
       {
         $project: {
           _id: 0,
+          emailVerified: 0,
           score: {
             $meta: 'searchScore'
           }
