@@ -60,12 +60,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const results = await getAllUsers();
   const totalUsers = await getUserCount();
 
-  const ogUrl = `https://mongodb.vercel.app/${user.username}`;
+  const ogUrl = `https://mongodb-starter-scout.vercel.app/${user.username}`;
   const meta = {
     ...defaultMetaProps,
-    title: `${user.name}'s Profile | MongoDB Starter Kit`,
+    title: `${user.name}'s Profile | Bitcoin Scout`,
     ogImage: `https://api.microlink.io/?url=${ogUrl}&screenshot=true&meta=false&embed=screenshot.url`,
-    ogUrl: `https://mongodb.vercel.app/${user.username}`
+    ogUrl: `https://mongodb-starter-scout.vercel.app/${user.username}`
   };
 
   return {

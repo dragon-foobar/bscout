@@ -10,7 +10,7 @@ export default function Settings({ user }: { user: UserProps }) {
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const session = await getSession({ req });
-  console.log('session in settings',session)
+
   if (!session) {
     return {
       redirect: {
@@ -24,10 +24,10 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const totalUsers = await getUserCount();
 
   const user = await getUser(session.user as string);
-
+  
   const meta = {
     ...defaultMetaProps,
-    title: `Settings | MongoDB Starter Kit`
+    title: `Settings | Bitcoin Scout`
   };
 
   return {

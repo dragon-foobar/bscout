@@ -157,7 +157,9 @@ export default function Profile({
 
       {/* Bio */}
       <div className={`${profileWidth} mt-16`}>
-        <h2 className="font-semibold  text-2xl text-white">Bio</h2>
+        <h2 className="font-semibold  text-2xl text-white has-tooltip">Bio
+          {/* <span className='tooltip rounded shadow-lg p-1 bg-gray-500 text-black text-xs'>Markdown compatible</span> */}
+        </h2>
         {settingsPage ? (
           <>
             <TextareaAutosize
@@ -192,7 +194,7 @@ export default function Profile({
           <button
             className={`${
               saving ? 'cursor-not-allowed' : ''
-            } rounded-full border border-[#0070F3] hover:border-2 w-12 h-12 flex justify-center items-center transition-all`}
+            } rounded-full border border-bitcoin-main hover:border-2 w-12 h-12 flex justify-center items-center transition-all`}
             disabled={saving}
             onClick={handleSave}
           >
@@ -202,7 +204,7 @@ export default function Profile({
               <CheckIcon className="h-4 w-4 text-white" />
             )}
           </button>
-          <Link href={`/${user.username}`} shallow replace scroll={false} className="rounded-full border border-gray-800 hover:border-white w-12 h-12 flex justify-center items-center transition-all">
+          <Link href={`/${user.username}`} shallow replace scroll={false} className="rounded-full border-2 border-gray-800 hover:border-bitcoin-main w-12 h-12 flex justify-center items-center transition-all">
               <XIcon className="h-4 w-4 text-white" />
           </Link>
         </div>
@@ -215,7 +217,7 @@ export default function Profile({
           scroll={false}
           
         >
-          <div className="fixed bottom-10 right-10 rounded-full border bg-black border-gray-800 hover:border-white w-12 h-12 flex justify-center items-center transition-all">
+          <div className="fixed bottom-10 right-10 rounded-full border-2 bg-black border-gray-800 hover:border-bitcoin-main w-12 h-12 flex justify-center items-center transition-all">
             <EditIcon className="h-4 w-4 text-white" />
           </div>
         </Link>
@@ -226,6 +228,6 @@ export default function Profile({
 
 const tabs = [
   { name: 'Profile' },
-  { name: 'Work History' },
+  { name: 'Skills and Experience' },
   { name: 'Contact' }
 ];

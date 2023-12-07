@@ -55,7 +55,7 @@ export const nextauthOptions: AuthOptions = {
   callbacks: {
     async session({ session, user, token }) {
       const { username } = token
-      console.log('username in session',username)
+
       if(username) {
         return {...session, username }
       }

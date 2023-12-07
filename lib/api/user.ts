@@ -153,10 +153,9 @@ export async function searchUser(query: string): Promise<UserProps[]> {
           */
           text: {
             query: query,
-            // path: {
-            //   wildcard: '*' // match on both name and username
-            // },
-            path: ['name','username'],
+            path: {
+              wildcard: '*' // match on both name and username
+            },
             fuzzy: {}
             // score: {
             //   // search ranking algorithm: multiply relevance score by the log1p of follower count
@@ -191,9 +190,6 @@ export async function searchUser(query: string): Promise<UserProps[]> {
       {
         $project: {
           _id: 0,
-          name: 1,
-          username: 1,
-          image: 1,
           score: {
             $meta: 'searchScore'
           }

@@ -5,7 +5,7 @@ export default function SearchIcon({ className }: { className?: string }) {
       viewBox="0 0 24 24"
       width="24"
       stroke="#F2A900"
-      strokeWidth="1.5"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
       fill="none"
