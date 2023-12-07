@@ -20,7 +20,7 @@ const setup = async () => {
     if (hasData) {
       console.log('Database already exists with data. Going to redo anyway.');
       await client.db('test').collection('users').drop()
-    }
+    }A
     console.log('about to make records')
     const records = await Promise.all([...Array(50)].map(async(_num,index) => {
       const [fName, lName] = faker.name.fullName().split(' ');

@@ -206,7 +206,7 @@ export default function Profile({
               <XIcon className="h-4 w-4 text-white" />
           </Link>
         </div>
-      ) : session?.user?.username === user.username ? (
+      ) : session?.username === user.username ? (
         <Link
           href={{ query: { settings: true } }}
           as="/settings"
