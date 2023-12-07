@@ -18,16 +18,16 @@ const setup = async () => {
       .countDocuments();
     console.log('has data',hasData)
     if (hasData) {
-      console.log('Database already exists with data');
+      console.log('Database already exists with data. Going to redo anyway.');
       await client.db('test').collection('users').drop()
     }
     console.log('about to make records')
-    const records = await Promise.all([...Array(10)].map(async(_num,index) => {
+    const records = await Promise.all([...Array(50)].map(async(_num,index) => {
       const [fName, lName] = faker.name.fullName().split(' ');
       const username = faker.internet.userName(fName, lName);
       const email = `${index}admin@gmail.com`;
       const image = faker.image.avatar();
-      const bio = 'This is just a test bio. Sue me'
+      const bio = 'Im a bitcoiner, so sue me. (ps. you can edit if youre logged in and this is your profile.'
       const password = await argon2.hash("password");
 
       return {

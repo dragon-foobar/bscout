@@ -17,3 +17,9 @@
     -webkit-mask-image: -webkit-radial-gradient(white, black);
   }
 }
+
+@layer base {
+  html {
+    font-family: "Ubuntu", system-ui, sans-serif;
+  }
+}

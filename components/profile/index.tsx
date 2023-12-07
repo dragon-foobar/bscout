@@ -145,7 +145,7 @@ export default function Profile({
                       ? 'border-white text-bitcoin-main'
                       : 'border-transparent text-gray-400 cursor-not-allowed'
                   }
-                    whitespace-nowrap py-3 px-1 border-b-2 font-medium text-sm font-mono`}
+                    whitespace-nowrap py-3 px-1 border-b-2 font-medium text-sm `}
                 >
                   {tab.name}
                 </button>
@@ -157,7 +157,7 @@ export default function Profile({
 
       {/* Bio */}
       <div className={`${profileWidth} mt-16`}>
-        <h2 className="font-semibold font-mono text-2xl text-white">Bio</h2>
+        <h2 className="font-semibold  text-2xl text-white">Bio</h2>
         {settingsPage ? (
           <>
             <TextareaAutosize
@@ -168,18 +168,18 @@ export default function Profile({
                   bio: (e.target as HTMLTextAreaElement).value
                 });
               }}
-              className="mt-1 w-full max-w-2xl px-0 text-sm tracking-wider leading-6 text-white bg-black font-mono border-0 border-b border-gray-800 focus:border-white resize-none focus:outline-none focus:ring-0"
+              className="mt-1 w-full max-w-2xl px-0 text-sm tracking-wider leading-6 text-white bg-black  border-0 border-b border-gray-800 focus:border-white resize-none focus:outline-none focus:ring-0"
               placeholder="Enter a short bio about yourself... (Markdown supported)"
               value={data.bio}
             />
             <div className="flex justify-end w-full max-w-2xl">
-              <p className="text-gray-400 font-mono text-sm">
+              <p className="text-gray-400  text-sm">
                 {data.bio.length}/256
               </p>
             </div>
           </>
         ) : (
-          <article className="mt-3 max-w-2xl text-sm tracking-wider leading-6 text-white font-mono prose prose-headings:text-white prose-a:text-white">
+          <article className="mt-3 max-w-2xl text-sm tracking-wider leading-6 text-white  prose prose-headings:text-white prose-a:text-white">
             <MDXRemote {...data.bioMdx} />
           </article>
         )}

@@ -121,6 +121,7 @@ export async function getAllUsers(): Promise<ResultProps[]> {
 }
 
 export async function searchUser(query: string): Promise<UserProps[]> {
+  console.log('query',query)
   const client = await clientPromise;
   const collection = client.db('test').collection('users');
   return await collection
@@ -152,27 +153,28 @@ export async function searchUser(query: string): Promise<UserProps[]> {
           */
           text: {
             query: query,
-            path: {
-              wildcard: '*' // match on both name and username
-            },
-            fuzzy: {},
-            score: {
-              // search ranking algorithm: multiply relevance score by the log1p of follower count
-              function: {
-                multiply: [
-                  {
-                    score: 'relevance'
-                  },
-                  {
-                    log1p: {
-                      path: {
-                        value: 'followers'
-                      }
-                    }
-                  }
-                ]
-              }
-            }
+            // path: {
+            //   wildcard: '*' // match on both name and username
+            // },
+            path: ['name','username'],
+            fuzzy: {}
+            // score: {
+            //   // search ranking algorithm: multiply relevance score by the log1p of follower count
+            //   function: {
+            //     multiply: [
+            //       {
+            //         score: 'relevance'
+            //       },
+            //       {
+            //         log1p: {
+            //           path: {
+            //             value: 'followers'
+            //           }
+            //         }
+            //       }
+            //     ]
+            //   }
+            // }
           }
         }
       },
@@ -185,16 +187,18 @@ export async function searchUser(query: string): Promise<UserProps[]> {
       // limit to 10 results
       {
         $limit: 10
+      },
+      {
+        $project: {
+          _id: 0,
+          name: 1,
+          username: 1,
+          image: 1,
+          score: {
+            $meta: 'searchScore'
+          }
+        }
       }
-      // {
-      //   $project: {
-      //     _id: 0,
-      //     emailVerified: 0,
-      //     score: {
-      //       $meta: 'searchScore'
-      //     }
-      //   }
-      // }
     ])
     .toArray();
 }

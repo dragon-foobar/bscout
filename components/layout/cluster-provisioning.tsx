@@ -35,7 +35,7 @@ export default function ClusterProvisioning() {
         <button
           type="button"
           onClick={onClick}
-          className="mt-4 text-white text-[13px] font-mono bg-black border border-[#333333] hover:border-white transition-all rounded-md w-full h-[40px] flex items-center justify-center whitespace-nowrap"
+          className="mt-4 text-white text-[13px]  bg-black border border-[#333333] hover:border-white transition-all rounded-md w-full h-[40px] flex items-center justify-center whitespace-nowrap"
           disabled={isSubmitting}
         >
           {isSubmitting ? <LoadingDots color="white" /> : 'Seed Database'}
@@ -46,7 +46,7 @@ export default function ClusterProvisioning() {
             href="https://cloud.mongodb.com/"
             target="_blank"
             rel="noreferrer"
-            className="font-mono text-xs text-gray-400 hover:text-white hover:underline transition-all"
+            className=" text-xs text-gray-400 hover:text-white hover:underline transition-all"
           >
             Check cluster status
           </a>

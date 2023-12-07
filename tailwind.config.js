@@ -5,6 +5,9 @@ module.exports = {
     './lib/gradients.ts'
   ],
   theme: {
+    fontFamily: {
+      'mono': 'Ubuntu' 
+    },
     extend: {
       colors: {
         'dark-accent-1': '#111111',

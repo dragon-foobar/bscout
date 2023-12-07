@@ -55,12 +55,14 @@ export const nextauthOptions: AuthOptions = {
   callbacks: {
     async session({ session, user, token }) {
       const { username } = token
+      console.log('username in session',username)
       if(username) {
         return {...session, username }
       }
       return session
     },
     async jwt({ token, user }) {
+      console.log('user in jwt',user)
       if(user){
         return {...token, username: user?.username }
       }

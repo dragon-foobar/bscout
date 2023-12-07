@@ -28,12 +28,12 @@ export default function Navbar({
       </button>
       {status !== 'loading' &&
         (session?.user ? (
-          <Link href={`/${session.user.username}`} >
+          <Link href={`/${session.username}`} >
             <div className="w-8 h-8 rounded-full overflow-hidden">
               <Image
                 src={
                   session.user.image ||
-                  `https://avatar.tobi.sh/${session.user.name}`
+                  `https://avatar.tobi.sh/${session.username}`
                 }
                 alt={session.user.name || 'User'}
                 width={300}
@@ -59,7 +59,7 @@ export default function Navbar({
                 : 'bg-black hover:bg-white border-black'
             } w-36 h-8 py-1 text-white hover:text-black border rounded-md text-sm transition-all`}
           >
-            {loading ? <LoadingDots color="gray" /> : 'Log in with GitHub'}
+            {loading ? <LoadingDots color="gray" /> : 'Log in'}
           </button>
         ))}
     </nav>
