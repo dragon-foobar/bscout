@@ -33,7 +33,7 @@ export default NextAuth(authOptions);
 //   callbacks: {
 //     async session({ session, user }) {
 //       // Send properties to the client, like an access_token from a provider.
-//       session.username = user.username;
+//       session.user.username = user.username;
 //       return session;
 //     }
 //   }

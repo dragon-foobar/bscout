@@ -28,7 +28,7 @@ export default function Navbar({
       </button>
       {status !== 'loading' &&
         (session?.user ? (
-          <Link href={`/${session.username}`} >
+          <Link href={`/${session.user.username}`} >
             <div className="w-8 h-8 rounded-full overflow-hidden">
               <Image
                 src={

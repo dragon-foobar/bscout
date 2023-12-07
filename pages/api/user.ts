@@ -25,7 +25,7 @@ export default async function handler(
     const { username, bio } = req.body;
     const session = await getServerSession(req, res, authOptions)
 
-    if (!session || session.username !== username) {
+    if (!session || session.user.username !== username) {
       return res.status(401).json({
         error: 'Unauthorized'
       });
