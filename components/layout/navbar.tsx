@@ -30,7 +30,7 @@ export default function Navbar({
       {status !== "loading" &&
         (session?.user ? (
           <Link href={`/${session.username}`}>
-            <Avvvatars style="shape" size={40} value={session.name} />
+            <Avvvatars style="shape" size={40} value="Tim Placeholder" />
           </Link>
         ) : (
           <button
