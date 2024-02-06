@@ -1,12 +1,13 @@
-import { useSession, signIn, signOut } from 'next-auth/react';
-import { useState } from 'react';
-import { LoadingDots } from '@/components/icons';
+import { useSession, signIn, signOut } from "next-auth/react";
+import { useState } from "react";
+import { LoadingDots } from "@/components/icons";
 import Image from "next/image";
-import { MenuIcon } from '@heroicons/react/outline';
-import Link from 'next/link';
+import { MenuIcon } from "@heroicons/react/outline";
+import Link from "next/link";
+import Avvvatars from "avvvatars-react";
 
 export default function Navbar({
-  setSidebarOpen
+  setSidebarOpen,
 }: {
   setSidebarOpen: (open: boolean) => void;
 }) {
@@ -26,40 +27,25 @@ export default function Navbar({
         <span className="sr-only">Open sidebar</span>
         <MenuIcon className="h-6 w-6" aria-hidden="true" />
       </button>
-      {status !== 'loading' &&
+      {status !== "loading" &&
         (session?.user ? (
-          <Link href={`/${session.username}`} >
-            <div className="w-8 h-8 rounded-full overflow-hidden">
-              <Image
-                src={
-                  session.user.image ||
-                  `https://avatar.tobi.sh/${session.username}`
-                }
-                alt={session.user.name || 'User'}
-                width={300}
-                height={300}
-                placeholder="blur"
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQYV2PYsGHDfwAHNAMQumvbogAAAABJRU5ErkJggg=="
-                style={{
-                  maxWidth: "100%",
-                  height: "auto"
-                }} />
-            </div>
+          <Link href={`/${session.username}`}>
+            <Avvvatars style="shape" size={40} value={session.name} />
           </Link>
         ) : (
           <button
             disabled={loading}
             onClick={() => {
               setLoading(true);
-              signIn('', { callbackUrl: `/profile` });
+              signIn("", { callbackUrl: `/profile` });
             }}
             className={`${
               loading
-                ? 'bg-gray-200 border-gray-300'
-                : 'bg-black hover:bg-white border-black'
+                ? "bg-gray-200 border-gray-300"
+                : "bg-black hover:bg-white border-black"
             } w-36 h-8 py-1 text-white hover:text-black border rounded-md text-sm transition-all`}
           >
-            {loading ? <LoadingDots color="gray" /> : 'Log in'}
+            {loading ? <LoadingDots color="gray" /> : "Log in"}
           </button>
         ))}
     </nav>

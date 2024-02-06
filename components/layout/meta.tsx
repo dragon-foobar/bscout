@@ -2,8 +2,7 @@ import Head from 'next/head';
 
 export const defaultMetaProps = {
   title: 'BScout',
-  description:
-    'Connect with bitcoiners on skill and interest',
+  description: 'Connect with bitcoiners on skill and interest',
   ogImage: `https://assets.vercel.com/image/upload/v1654626375/twitter-cards/mongo-integration-starter.png`,
   ogUrl: 'https://bscout.io'
 };

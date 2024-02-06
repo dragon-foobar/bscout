@@ -1,8 +1,8 @@
-import clientPromise from '@/lib/mongodb';
-import { remark } from 'remark';
-import remarkMdx from 'remark-mdx';
-import { serialize } from 'next-mdx-remote/serialize';
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import clientPromise from "@/lib/mongodb";
+import { remark } from "remark";
+import remarkMdx from "remark-mdx";
+import { serialize } from "next-mdx-remote/serialize";
+import type { MDXRemoteSerializeResult } from "next-mdx-remote";
 
 export interface UserProps {
   name: string;
@@ -11,8 +11,18 @@ export interface UserProps {
   image: string;
   bio: string;
   bioMdx: MDXRemoteSerializeResult<Record<string, unknown>>;
+  skillsAndExperience: string;
+  skillsAndExperienceMdx: MDXRemoteSerializeResult<Record<string, unknown>>;
+  availability: string;
+  availabilityMdx: MDXRemoteSerializeResult<Record<string, unknown>>;
+  contact: string;
+  contactMdx: MDXRemoteSerializeResult<Record<string, unknown>>;
   followers: number;
   verified: boolean;
+  nostrPublicKey: string;
+  githubUsername: string;
+  linkedInUsername: string;
+  xUsername: string;
 }
 
 export interface ResultProps {
@@ -43,7 +53,7 @@ Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea rhoncus ac mauris 
 
 export async function getUser(username: string): Promise<UserProps | null> {
   const client = await clientPromise;
-  const collection = client.db('test').collection('users');
+  const collection = client.db("test").collection("users");
   const results = await collection.findOne<UserProps>(
     { username },
     { projection: { _id: 0, emailVerified: 0 } }
@@ -51,7 +61,14 @@ export async function getUser(username: string): Promise<UserProps | null> {
   if (results) {
     return {
       ...results,
-      bioMdx: await getMdxSource(results.bio || placeholderBio)
+      bioMdx: await getMdxSource(results.bio || placeholderBio),
+      skillsAndExperienceMdx: await getMdxSource(
+        results.skillsAndExperience || placeholderBio
+      ),
+      contactMdx: await getMdxSource(results.contact || placeholderBio),
+      availabilityMdx: await getMdxSource(
+        results.availability || placeholderBio
+      ),
     };
   } else {
     return null;
@@ -60,17 +77,24 @@ export async function getUser(username: string): Promise<UserProps | null> {
 
 export async function getFirstUser(): Promise<UserProps | null> {
   const client = await clientPromise;
-  const collection = client.db('test').collection('users');
+  const collection = client.db("test").collection("users");
   const results = await collection.findOne<UserProps>(
     {},
     {
-      projection: { _id: 0, emailVerified: 0 }
+      projection: { _id: 0, emailVerified: 0 },
     }
   );
   if (results) {
     return {
       ...results,
-      bioMdx: await getMdxSource(results.bio || placeholderBio)
+      bioMdx: await getMdxSource(results.bio || placeholderBio),
+      skillsAndExperienceMdx: await getMdxSource(
+        results.skillsAndExperience || placeholderBio
+      ),
+      contactMdx: await getMdxSource(results.contact || placeholderBio),
+      availabilityMdx: await getMdxSource(
+        results.availability || placeholderBio
+      ),
     };
   } else {
     return null;
@@ -79,51 +103,50 @@ export async function getFirstUser(): Promise<UserProps | null> {
 
 export async function getAllUsers(): Promise<ResultProps[]> {
   const client = await clientPromise;
-  const collection = client.db('test').collection('users');
+  const collection = client.db("test").collection("users");
 
   return await collection
     .aggregate<ResultProps>([
       {
         //sort by follower count
         $sort: {
-          followers: -1
-        }
+          followers: -1,
+        },
       },
       {
-        $limit: 100
+        $limit: 100,
       },
       {
         $group: {
           _id: {
-            $toLower: { $substrCP: ['$name', 0, 1] }
+            $toLower: { $substrCP: ["$name", 0, 1] },
           },
           users: {
             $push: {
-              name: '$name',
-              username: '$username',
-              email: '$email',
-              image: '$image',
-              followers: '$followers',
-              verified: '$verified'
-            }
+              name: "$name",
+              username: "$username",
+              email: "$email",
+              image: "$image",
+              followers: "$followers",
+              verified: "$verified",
+            },
           },
-          count: { $sum: 1 }
-        }
+          count: { $sum: 1 },
+        },
       },
       {
         //sort alphabetically
         $sort: {
-          _id: 1
-        }
-      }
+          _id: 1,
+        },
+      },
     ])
     .toArray();
 }
 
 export async function searchUser(query: string): Promise<UserProps[]> {
-  console.log('query',query)
   const client = await clientPromise;
-  const collection = client.db('test').collection('users');
+  const collection = client.db("test").collection("users");
   return await collection
     .aggregate<UserProps>([
       {
@@ -153,27 +176,27 @@ export async function searchUser(query: string): Promise<UserProps[]> {
           */
           text: {
             query: query,
-            path: ['name','username'],
+            path: ["name", "username"],
             fuzzy: {},
             score: {
               // search ranking algorithm: multiply relevance score by the log1p of follower count
               function: {
                 multiply: [
                   {
-                    score: 'relevance'
+                    score: "relevance",
                   },
                   {
                     log1p: {
                       path: {
-                        value: 'followers'
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        }
+                        value: "followers",
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        },
       },
       // {
       //   // filter out users that are not verified
@@ -183,30 +206,38 @@ export async function searchUser(query: string): Promise<UserProps[]> {
       // },
       // limit to 10 results
       {
-        $limit: 10
+        $limit: 10,
       },
       {
         $project: {
           _id: 0,
           emailVerified: 0,
           score: {
-            $meta: 'searchScore'
-          }
-        }
-      }
+            $meta: "searchScore",
+          },
+        },
+      },
     ])
     .toArray();
 }
 
 export async function getUserCount(): Promise<number> {
   const client = await clientPromise;
-  const collection = client.db('test').collection('users');
+  const collection = client.db("test").collection("users");
   return await collection.countDocuments();
 }
 
-export async function updateUser(username: string, bio: string) {
-
+export async function updateUser(
+  username: string,
+  bio: string,
+  skillsAndExperience: string,
+  availability: string,
+  contact: string
+) {
   const client = await clientPromise;
-  const collection = client.db('test').collection('users');
-  return await collection.updateOne({ username }, { $set: { bio } });
+  const collection = client.db("test").collection("users");
+  return await collection.updateOne(
+    { username },
+    { $set: { bio, skillsAndExperience, availability, contact } }
+  );
 }

@@ -1,4 +1,4 @@
-import Image, { ImageProps } from "next/image";
+import Image, { ImageProps } from 'next/image';
 import { useState, useEffect } from 'react';
 
 export default function BlurImage(props: ImageProps) {
@@ -22,6 +22,7 @@ export default function BlurImage(props: ImageProps) {
         setLoading(false);
       }}
       fill
-      sizes="100vw" />
+      sizes="100vw"
+    />
   );
 }

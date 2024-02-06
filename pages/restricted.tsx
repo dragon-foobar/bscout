@@ -1,8 +1,8 @@
-import { GetServerSideProps } from "next";
-import { getSession } from "next-auth/react";
+import { GetServerSideProps } from 'next';
+import { getSession } from 'next-auth/react';
 // import { nextauthOptions } from "@/lib/nextauthOptions";
 // import { getServerSession } from "next-auth/next";
-import React from "react";
+import React from 'react';
 
 export default function RestrictedPage() {
   return <div>RestrictedPage</div>;

@@ -41,8 +41,6 @@ export default function Layout({
     return <ClusterProvisioning />;
   }
 
-
-
   return (
     <div className="w-full mx-auto h-screen flex overflow-hidden bg-black">
       <Meta props={meta} />

@@ -20,11 +20,11 @@
 
 @layer base {
   html {
-    font-family: "Ubuntu", system-ui, sans-serif;
+    font-family: 'Ubuntu', system-ui, sans-serif;
   }
 }
 
-.tooltip{
+.tooltip {
   visibility: hidden;
   position: absolute;
 }

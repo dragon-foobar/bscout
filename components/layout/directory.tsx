@@ -1,27 +1,27 @@
-import { ResultProps, UserProps } from '@/lib/api/user';
-import { signOut } from 'next-auth/react';
-import Link from 'next/link';
-import useSWR from 'swr';
-import fetcher from '@/lib/fetcher';
-import { useDebounce } from '@/lib/hooks/use-debounce';
-import { useState } from 'react';
-import { DirectoryIcon, SearchIcon } from '@/components/icons';
-import DirectoryResults from './directory-results';
+import { ResultProps, UserProps } from "@/lib/api/user";
+import { signOut } from "next-auth/react";
+import Link from "next/link";
+import useSWR from "swr";
+import fetcher from "@/lib/fetcher";
+import { useDebounce } from "@/lib/hooks/use-debounce";
+import { useState } from "react";
+import { DirectoryIcon, SearchIcon } from "@/components/icons";
+import DirectoryResults from "./directory-results";
 
 export default function Directory({
   results,
-  totalUsers
+  totalUsers,
 }: {
   results: ResultProps[];
   totalUsers: number;
 }) {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, 200);
   const { data: searchedUsers } = useSWR<UserProps[] | null>(
     debouncedQuery.length > 0 && `api/user?query=${debouncedQuery}`,
     fetcher,
     {
-      keepPreviousData: true
+      keepPreviousData: true,
     }
   );
 
@@ -29,14 +29,14 @@ export default function Directory({
     <aside className="flex-shrink-0 w-full bg-black sm:w-96 h-full overflow-scroll border-r border-gray-800">
       <div className="px-6 pt-6 pb-0 sticky top-0 bg-black z-20">
         <Link href="/">
-            <div className="bg-dark-accent-1 hover:bg-dark-accent-2 transition-all rounded-2xl h-12 w-12 flex justify-center items-center">
-              <DirectoryIcon className="text-white" />
-            </div>
+          <div className="bg-dark-accent-1 hover:bg-dark-accent-2 transition-all rounded-2xl h-12 w-12 flex justify-center items-center">
+            <DirectoryIcon className="text-white" />
+          </div>
         </Link>
         <button onClick={() => signOut()}>Sign out</button>
-        <p className="mt-8 text-2xl text-white font-bold">Directory</p>
+        <p className="mt-8 text-2xl text-white font-bold"> ₿scout Directory</p>
         <p className="mt-2 text-sm text-dark-accent-5">
-          Search directory of {Intl.NumberFormat('en-us').format(totalUsers)}{' '}
+          Search directory of {Intl.NumberFormat("en-us").format(totalUsers)}{" "}
           bitcoiners
         </p>
         <form className="py-8 flex space-x-4" action="#">
