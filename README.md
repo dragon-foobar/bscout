@@ -39,14 +39,6 @@ These instructions are for anyone who would like to solve problems and contribut
 
 10. Once your application is deployed, **edit the homepage & callback URLs in your GitHub OAuth App to match your deployment URL**.
 
-## Alpha
-
-https://mongodb.vercel.app
-
-## Vercel + MongoDB Integration
-
-https://vercel.com/integrations/mongodbatlas
-
 ## Tech Stack
 
 - [Next.js](https://nextjs.org/)
