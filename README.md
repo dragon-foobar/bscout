@@ -12,11 +12,18 @@ You can contribute in multiple ways:
 - Join the BScout [Alpha chat group](https://t.me/BSCOUTio).
 - Submit issues that you see with the alpha version.
 - Submit pull requests on code that could be improved or changed.
-- ... and there are lots of other ways you could help, just say hi first!
+- ... and there are lots of other ways you could help, you can email us at [hello@bscout.io](mailto:hello@bsout.io)!
 
-## Deployment Instructions
+## Live Deployments
+- Production (alpha) - [https://alpha.bscout.io](https://alpha.bscout.io)
+- Development (alpha) - [https://dev.bscout.io](https://dev.bscout.io)
 
-You will need to create a [GitHub OAuth App](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app) to use this starter. Here are the steps:
+## Local Development Instructions
+These instructions are for anyone who would like to solve problems and contribute to the Bscout application.
+
+1. Fork this repository to your own.
+2. Download your forked version to your local computer.
+3. 
 
 1. Go to https://github.com/settings/developers and create a new OAuth application
 2. Name your application **"MongoDB Starter"**
@@ -32,7 +39,7 @@ You will need to create a [GitHub OAuth App](https://docs.github.com/en/develope
 
 10. Once your application is deployed, **edit the homepage & callback URLs in your GitHub OAuth App to match your deployment URL**.
 
-## Demo
+## Alpha
 
 https://mongodb.vercel.app
 
