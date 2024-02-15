@@ -1,7 +1,7 @@
 # ₿scout
 ### Forge your path to working in Bitcoin
 
-A directory and idea sharing platform built on [Next.js](https://nextjs.org/) and [MongoDB Atlas](https://www.mongodb.com/atlas/database).
+A directory and idea sharing platform to help bitcoiners get connected and build things together. Built on [Next.js](https://nextjs.org/) and [MongoDB Atlas](https://www.mongodb.com/atlas/database).
 
 ![People socialising in a pub](https://www.bscout.io/content/images/size/w960/2024/01/568791_Vibrant-painting-of-young-and-middle-aged-men-and-_xl-1024-v1-0.png)
 
