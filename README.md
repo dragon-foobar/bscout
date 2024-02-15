@@ -6,7 +6,13 @@ A directory and idea sharing platform built on [Next.js](https://nextjs.org/) an
 ![People socialising in a pub](https://www.bscout.io/content/images/size/w960/2024/01/568791_Vibrant-painting-of-young-and-middle-aged-men-and-_xl-1024-v1-0.png)
 
 ## Contributing
-₿scout is a passion project by and for bitcoiners (
+₿scout is a passion project by and for bitcoiners (initiated by Finsko, Bayani and Crispy). As we are all strapped for time, we would love for anyone who is interested to get involved, whether you're a junior or experienced developer, a designer, project manager.
+
+You can contribute in multiple ways:
+- Join the BScout [Alpha chat group](https://t.me/BSCOUTio).
+- Submit issues that you see with the alpha version.
+- Submit pull requests on code that could be improved or changed.
+- ... and there are lots of other ways you could help, just say hi first!
 
 ## Deployment Instructions
 
