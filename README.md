@@ -21,6 +21,11 @@ You can contribute in multiple ways:
 ## Local Development Instructions
 These instructions are for anyone who would like to solve problems and contribute to the Bscout application.
 
+### Requirements
+In order to develop locally, you will need the following:
+- nodejs
+- npm, yarn or another package manager
+
 1. Fork this repository to your own.
 2. Download your forked version to your local computer.
 3. 
