@@ -6,7 +6,7 @@ The BScout app is working towards being a directory and idea sharing platform to
 ![People socialising in a pub](https://www.bscout.io/content/images/size/w960/2024/01/568791_Vibrant-painting-of-young-and-middle-aged-men-and-_xl-1024-v1-0.png)
 
 ## Contributing
-₿scout is a passion project 🧡 by and for bitcoiners (initiated by Finsko, Bayani and Crispy in Australia 🇦🇺). As we are all strapped for time, we would love for anyone who is interested to get involved, whether you're a junior or experienced developer, a designer, project manager.
+₿scout is a passion project 🧡 by and for bitcoiners (initiated and led by Finsko, Bayani and Crispy in Australia 🇦🇺). As we are all strapped for time, we would love for anyone who is interested to get involved, whether you're a junior or experienced developer, a designer, project manager.
 
 You can contribute in multiple ways:
 - Join the BScout [Alpha chat group](https://t.me/BSCOUTio).
