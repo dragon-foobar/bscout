@@ -18,6 +18,7 @@ You can contribute in multiple ways:
 ## Live Deployments
 - Production (alpha) - [https://alpha.bscout.io](https://alpha.bscout.io)
 - Development (alpha) - [https://dev.bscout.io](https://dev.bscout.io)
+*Our blog is currently at [https://bscout.io](https://bscout.io)
 
 ## Local Development Instructions
 These instructions are for anyone who would like to solve problems and contribute to the Bscout application.
