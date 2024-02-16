@@ -28,7 +28,7 @@ In order to develop locally, you will need the following:
 - [nodejs](https://nodejs.org/en/download)
 - npm, yarn or pnpm - [read comparison](https://blog.logrocket.com/javascript-package-managers-compared/)
 ### Steps
-1. Fork this repository to your own.
+1. Fork this repository to your own. *Make sure you fork the **dev** branch, because that's what you'll be requesting your pull back into, not main, which is production*
 2. Clone/download your forked version to your local computer.
 
 ```
