@@ -1,8 +1,6 @@
-import { GetServerSideProps } from 'next';
-import { getSession } from 'next-auth/react';
-// import { nextauthOptions } from "@/lib/nextauthOptions";
-// import { getServerSession } from "next-auth/next";
-import React from 'react';
+import { GetServerSideProps } from "next";
+import { getSession } from "next-auth/react";
+import React from "react";
 
 export default function RestrictedPage() {
   return <div>RestrictedPage</div>;
@@ -17,15 +15,15 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
     return {
       redirect: {
         permanent: false,
-        destination: '/api/auth/signin'
-      }
+        destination: "/api/auth/signin",
+      },
     };
   }
 
   return {
     redirect: {
       permanent: false,
-      destination: `/${session.username}`
-    }
+      destination: `/${session.username}`,
+    },
   };
 };

@@ -1,7 +1,12 @@
 import { GetServerSideProps } from "next";
 import Profile from "@/components/profile";
 import { defaultMetaProps } from "@/components/layout/meta";
-import { getUser, getAllUsers, UserProps, getUserCount } from "@/lib/api/user";
+import {
+  getUserByUsername,
+  getAllUsers,
+  UserProps,
+  getUserCount,
+} from "@/lib/api/user";
 import { getSession } from "next-auth/react";
 
 export default function Settings({ user }: { user: UserProps }) {
@@ -23,7 +28,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
   const results = await getAllUsers();
   const totalUsers = await getUserCount();
 
-  const user = await getUser(session.user as string);
+  const user = await getUserByUsername(session.user as string);
 
   const meta = {
     ...defaultMetaProps,

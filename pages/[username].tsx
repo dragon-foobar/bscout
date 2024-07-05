@@ -1,9 +1,9 @@
-import { ParsedUrlQuery } from 'querystring';
-import { GetStaticProps } from 'next';
-import { defaultMetaProps } from '@/components/layout/meta';
-import { getUser, getAllUsers, getUserCount } from '@/lib/api/user';
-export { default } from '.';
-import clientPromise from '@/lib/mongodb';
+import { ParsedUrlQuery } from "querystring";
+import { GetStaticProps } from "next";
+import { defaultMetaProps } from "@/components/layout/meta";
+import { getUserByUsername, getAllUsers, getUserCount } from "@/lib/api/user";
+export { default } from ".";
+import clientPromise from "@/lib/mongodb";
 
 interface Params extends ParsedUrlQuery {
   username: string;
@@ -17,7 +17,7 @@ export const getStaticPaths = async () => {
     // cluster is still provisioning
     return {
       paths: [],
-      fallback: true
+      fallback: true,
     };
   }
 
@@ -27,7 +27,7 @@ export const getStaticPaths = async () => {
   );
   return {
     paths,
-    fallback: true
+    fallback: true,
   };
 };
 
@@ -36,12 +36,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
   try {
     await clientPromise;
   } catch (e: any) {
-    if (e.code === 'ENOTFOUND') {
+    if (e.code === "ENOTFOUND") {
       // cluster is still provisioning
       return {
         props: {
-          clusterStillProvisioning: true
-        }
+          clusterStillProvisioning: true,
+        },
       };
     } else {
       throw new Error(`Connection limit reached. Please try again later.`);
@@ -49,11 +49,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   const { username } = context.params as Params;
-  const user = await getUser(username);
+  const user = await getUserByUsername(username);
   if (!user) {
     return {
       notFound: true,
-      revalidate: 10
+      revalidate: 10,
     };
   }
 
@@ -65,7 +65,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     ...defaultMetaProps,
     title: `${user.name}'s Profile | Bitcoin Scout`,
     ogImage: `https://api.microlink.io/?url=${ogUrl}&screenshot=true&meta=false&embed=screenshot.url`,
-    ogUrl: `https://ongodb-starter-scout-dragon-den.vercel.app/${user.username}`
+    ogUrl: `https://ongodb-starter-scout-dragon-den.vercel.app/${user.username}`,
   };
 
   return {
@@ -73,8 +73,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
       meta,
       results,
       totalUsers,
-      user
+      user,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 };

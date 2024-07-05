@@ -1,6 +1,6 @@
-import { GetServerSideProps } from 'next';
-import { getServerSession } from 'next-auth';
-import { authOptions } from 'pages/api/auth/[...nextauth]';
+import { GetServerSideProps } from "next";
+import { getServerSession } from "next-auth";
+import { authOptions } from "pages/api/auth/[...nextauth]";
 
 export default function Profile() {
   return <div>Profile</div>;
@@ -13,14 +13,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
       redirect: {
         permanent: false,
-        destination: '/'
-      }
+        destination: "/",
+      },
     };
   }
   return {
     redirect: {
       permanent: false,
-      destination: `/${session.username}`
-    }
+      destination: `/${session.username}`,
+    },
   };
 };
