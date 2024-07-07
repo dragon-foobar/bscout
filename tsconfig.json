@@ -14,7 +14,7 @@
       "@/lib/*": ["lib/*"],
       "@/styles/*": ["styles/*"],
       "@/types": ["types/index"],
-      "@/types/*": ["types/*"]
+      "@/types/*": ["types/*"],
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "pretty": true,
@@ -24,8 +24,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "tailwind.config.js"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }

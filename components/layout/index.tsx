@@ -1,13 +1,13 @@
-import { useState, ReactNode } from 'react';
-import Sidebar from './sidebar';
-import Navbar from './navbar';
-import Directory from './directory';
-import { ResultProps } from '@/lib/api/user';
-import Toast from '@/components/layout/toast';
-import Meta, { MetaProps } from '@/components/layout/meta';
-import { useRouter } from 'next/router';
-import { LoadingDots } from '@/components/icons';
-import ClusterProvisioning from '@/components/layout/cluster-provisioning';
+import { useState, ReactNode } from "react";
+import Sidebar from "./sidebar";
+import Navbar from "./navbar";
+import Directory from "./directory";
+import { ResultProps } from "@/lib/api/user";
+import Toast from "@/components/layout/toast";
+import Meta, { MetaProps } from "@/components/layout/meta";
+import { useRouter } from "next/router";
+import { LoadingDots } from "@/components/icons";
+import ClusterProvisioning from "@/components/layout/cluster-provisioning";
 
 export default function Layout({
   meta,
@@ -15,7 +15,7 @@ export default function Layout({
   totalUsers,
   username,
   clusterStillProvisioning,
-  children
+  children,
 }: {
   meta: MetaProps;
   results: ResultProps[];

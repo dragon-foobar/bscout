@@ -1,7 +1,7 @@
 @tailwind base;
 
 .directory-divide-y > li:not(:last-child):after {
-  content: '';
+  content: "";
   display: block;
   width: calc(100% - 24px);
   transform: translateX(24px);
@@ -20,7 +20,7 @@
 
 @layer base {
   html {
-    font-family: 'Ubuntu', system-ui, sans-serif;
+    font-family: "Ubuntu", system-ui, sans-serif;
   }
 }
 
