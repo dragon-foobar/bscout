@@ -11,9 +11,9 @@ export default async function handler(
   if (req.method === "GET") {
     try {
       console.log("req,", req.query);
-      const result = await searchUser(req.query.query as string);
-      console.log("results", result);
-      return res.status(200).json(result);
+      const results = await searchUser(req.query.query as string);
+      console.log("results", results);
+      return res.status(200).json(results);
     } catch (e: any) {
       console.log(e);
       return res.status(500).json({
