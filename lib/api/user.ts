@@ -239,21 +239,24 @@ export async function updateUser(
 }
 
 export async function saveUserOnSignUp(username: string, contact: string) {
-  const collection = await getUsersCollection();
+  const user = await getUserByUsername(username);
+  if (!user) {
+    const collection = await getUsersCollection();
 
-  const query = { username: username };
-  const options = { upsert: true };
-  // TODO might need to fill all userProps here
-  const update = {
-    $set: {
-      username,
-      name: username,
-      bio: "",
-      skillsAndExperience: "",
-      availability: "",
-      contact,
-    },
-  };
+    const query = { username: username };
+    const options = { upsert: true };
+    // TODO might need to fill all userProps here
+    const update = {
+      $set: {
+        username,
+        name: username,
+        bio: "",
+        skillsAndExperience: "",
+        availability: "",
+        contact,
+      },
+    };
 
-  return await collection.updateOne(query, update, options);
+    return await collection.updateOne(query, update, options);
+  }
 }
