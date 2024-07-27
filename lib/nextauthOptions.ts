@@ -27,8 +27,8 @@ export const nextauthOptions: AuthOptions = {
       }
       return session;
     },
-    async jwt({ token, user, trigger }) {
-      if (trigger === "signUp") {
+    async jwt({ token, user, account }) {
+      if (account && user) {
         const userName = user.name ?? "";
         const userContact = user.email ?? "";
         try {
