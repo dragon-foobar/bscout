@@ -2,19 +2,11 @@ export default async function fetcher<JSON = any>(
   input: RequestInfo,
   init?: RequestInit
 ): Promise<JSON> {
-  return new Promise((resolve, reject) => {
-    fetch(input, init)
-      .then((response) => {
-        return response.json();
-      })
-      .catch((error) => {
-        throw new Error("Unauthorized", error.message);
-      });
-  });
+  const response = await fetch(input, init);
+
+  if (!response.ok) {
+    throw new Error("Failed to fetch");
+  }
+
+  return await response.json();
 }
-
-// if (!res.ok && res.status === 401) {
-//   throw new Error('Unauthorized');
-// }
-
-// return res.json();

@@ -149,69 +149,12 @@ export async function searchUser(query: string): Promise<UserProps[]> {
     .aggregate<UserProps>([
       {
         $search: {
-          // index: 'name-index',
-          /* 
-          name-index is a search index as follows:
-
-          {
-            "mappings": {
-              "fields": {
-                "followers": {
-                  "type": "number"
-                },
-                "name": {
-                  "analyzer": "lucene.whitespace",
-                  "searchAnalyzer": "lucene.whitespace",
-                  "type": "string"
-                },
-                "username": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-
-          */
+          index: "users",
           text: {
-            query: query,
-            path: ["name", "username"],
-            fuzzy: {},
-            score: {
-              // search ranking algorithm: multiply relevance score by the log1p of follower count
-              function: {
-                multiply: [
-                  {
-                    score: "relevance",
-                  },
-                  {
-                    log1p: {
-                      path: {
-                        value: "followers",
-                      },
-                    },
-                  },
-                ],
-              },
+            query,
+            path: {
+              wildcard: "*",
             },
-          },
-        },
-      },
-      // {
-      //   // filter out users that are not verified
-      //   $match: {
-      //     emailVerified: true
-      //   }
-      // },
-      // limit to 10 results
-      {
-        $limit: 10,
-      },
-      {
-        $project: {
-          _id: 0,
-          emailVerified: 0,
-          score: {
-            $meta: "searchScore",
           },
         },
       },
