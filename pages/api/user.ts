@@ -12,7 +12,6 @@ export default async function handler(
     try {
       console.log("req,", req.query);
       const results = await searchUser(req.query.query as string);
-      console.log("results", results);
       return res.status(200).json(results);
     } catch (e: any) {
       console.log(e);
