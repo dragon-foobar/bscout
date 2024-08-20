@@ -12,14 +12,12 @@ const setup = async () => {
     client = new MongoClient(process.env.MONGODB_URI);
     await client.connect();
     console.log("connected");
-    const hasData = await client
+    const count = await client
       .db("test")
       .collection("users")
       .countDocuments();
-    console.log("has data", hasData);
-    if (hasData) {
-      console.log("Database already exists with data. Going to redo anyway.");
-      await client.db("test").collection("users").drop();
+    if (count > 0) {
+      return;
     }
     console.log("about to make records");
     const records = await Promise.all(
@@ -28,15 +26,8 @@ const setup = async () => {
         const username = faker.internet.userName(fName, lName);
         const email = `${index}admin@gmail.com`;
         const image = faker.image.avatar();
-        const bio =
-          "Im a bitcoiner, so sue me. (ps. you can edit if youre logged in and this is your profile.";
+        const info = "I'm a bitcoiner, so sue me. (p.s. you can edit this if you're logged in and this is your profile.";
         const password = await argon2.hash("password");
-        const availability =
-          "Im a bitcoiner, so sue me. (ps. you can edit if youre logged in and this is your profile.";
-        const contact =
-          "Im a bitcoiner, so sue me. (ps. you can edit if youre logged in and this is your profile.";
-        const skillsAndExperience =
-          "Im a bitcoiner, so sue me. (ps. you can edit if youre logged in and this is your profile.";
         const nostrPublicKey =
           "npub16c0nh3dnadzqpm76uctf5hqhe2lny344zsmpm6feee9p5rdxaa9q586nvr";
         const githubUsername = "dragon-foobar";
@@ -51,10 +42,10 @@ const setup = async () => {
           image,
           followers: 1,
           emailVerified: null,
-          bio,
-          availability,
-          contact,
-          skillsAndExperience,
+          bio: info,
+          availability: info,
+          contact: info,
+          skillsAndExperience: info,
           nostrPublicKey,
           githubUsername,
           linkedInUsername,
