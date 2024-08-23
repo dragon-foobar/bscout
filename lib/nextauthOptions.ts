@@ -2,6 +2,7 @@ import { AuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import RedditProvider from "next-auth/providers/reddit";
+import WorkOSProvider from "next-auth/providers/workos";
 import { saveUserOnSignUp } from "@/lib/api/user";
 
 export const nextauthOptions: AuthOptions = {
@@ -17,6 +18,10 @@ export const nextauthOptions: AuthOptions = {
     RedditProvider({
       clientId: process.env.REDDIT_CLIENT_ID ?? "",
       clientSecret: process.env.REDDIT_CLIENT_SECRET ?? "",
+    }),
+    WorkOSProvider({
+      clientId: process.env.WORKOS_CLIENT_ID ?? "",
+      clientSecret: process.env.WORKOS_API_KEY ?? "",
     }),
   ],
   callbacks: {
