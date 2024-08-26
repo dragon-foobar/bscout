@@ -12,10 +12,7 @@ const setup = async () => {
     client = new MongoClient(process.env.MONGODB_URI);
     await client.connect();
     console.log("connected");
-    const count = await client
-      .db("test")
-      .collection("users")
-      .countDocuments();
+    const count = await client.db("test").collection("users").countDocuments();
     if (count > 0) {
       return;
     }
@@ -26,7 +23,8 @@ const setup = async () => {
         const username = faker.internet.userName(fName, lName);
         const email = `${index}admin@gmail.com`;
         const image = faker.image.avatar();
-        const info = "I'm a bitcoiner, so sue me. (p.s. you can edit this if you're logged in and this is your profile.";
+        const info =
+          "I'm a bitcoiner, so sue me. (p.s. you can edit this if you're logged in and this is your profile.";
         const password = await argon2.hash("password");
         const nostrPublicKey =
           "npub16c0nh3dnadzqpm76uctf5hqhe2lny344zsmpm6feee9p5rdxaa9q586nvr";
