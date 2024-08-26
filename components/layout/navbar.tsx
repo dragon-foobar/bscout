@@ -29,9 +29,19 @@ export default function Navbar({
       </button>
       {status !== "loading" &&
         (session?.user ? (
-          <Link href={`/${session.username}`}>
-            <Avvvatars style="shape" size={40} value="Tim Placeholder" />
-          </Link>
+          <div>
+            <Link href={`/${session.username}`}>
+              <Avvvatars style="shape" size={40} value="Tim Placeholder" />
+            </Link>
+            <button
+              onClick={() => {
+                setLoading(true);
+                signOut();
+              }}
+            >
+              {"Sign out"}
+            </button>
+          </div>
         ) : (
           <button
             disabled={loading}
