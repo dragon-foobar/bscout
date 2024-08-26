@@ -5,7 +5,7 @@ import { MenuIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import Avvvatars from "avvvatars-react";
 
-const organization = 'org_01J5YNNPDFNSK7JPSVJAX0QK9P';
+const organization = process.env.ORGANIZATION_ID ?? "org_01J5YNNPDFNSK7JPSVJAX0QK9P";
 
 export default function Navbar({
   setSidebarOpen,
@@ -38,7 +38,7 @@ export default function Navbar({
             disabled={loading}
             onClick={() => {
               setLoading(true);
-              signIn("", { callbackUrl: `/profile`, organization });
+              signIn("", { callbackUrl: `/profile` }, { organization });
             }}
             className={`${
               loading

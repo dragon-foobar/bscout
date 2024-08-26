@@ -50,7 +50,6 @@ export default function Profile({
     linkedInUsername: user.linkedInUsername,
   });
   const [selectedTab, setSelectedTab] = useState("Biography");
-  console.log("settings, user", settings, user);
   if (data.username !== user.username) {
     setData(user);
   }
