@@ -5,3 +5,8 @@ export const getUsersCollection = async () => {
   const client = await clientPromise;
   return client.db(process.env.DB_NAME ?? "test").collection("users");
 };
+
+export const getMessagesCollection = async () => {
+  const client = await clientPromise;
+  return client.db(process.env.DB_NAME ?? "test").collection("messages");
+};

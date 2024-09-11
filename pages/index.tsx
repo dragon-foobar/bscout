@@ -8,9 +8,16 @@ import {
 } from "@/lib/api/user";
 import { defaultMetaProps } from "@/components/layout/meta";
 import clientPromise from "@/lib/mongodb";
+import Link from "next/link";
+import Conversation from "@/components/forum/Conversation";
 
 export default function Home({ user }: { user: UserProps }) {
-  return <Profile user={user} settings={false} />;
+  return (
+    <div>
+      <Profile user={user} settings={false} />
+      <Conversation />
+    </div>
+  );
 }
 
 export const getStaticProps: GetStaticProps = async () => {

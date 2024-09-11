@@ -3,14 +3,19 @@ import React, { useEffect, useState } from "react";
 import { Send } from "lucide-react";
 import Message from "./Message";
 import { pusherClient } from "@/lib/pusher";
-import { sendMessage } from "../../actions/message.action";
 
-const Conversation = () => {
+export const Conversation = () => {
   const [messages, setMessages] = useState<string[]>([]);
   const [message, setMessage] = useState<string>("");
 
   const onSendMessageHandler = async () => {
-    await sendMessage(message);
+    const response = await fetch("/api/forum/message", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message }),
+    });
   };
 
   const uniqueMessages = messages.filter(
@@ -19,7 +24,7 @@ const Conversation = () => {
 
   useEffect(() => {
     // 2
-    pusherClient.subscribe("chat-app");
+    pusherClient.subscribe("bscout");
     // 3
     pusherClient.bind("upcoming-message", (data: { message: string }) => {
       setMessages((prev) => [...prev, data.message]);
